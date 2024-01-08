@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 dotenv.config()
 declare const module: any;
 async function bootstrap() {
@@ -11,6 +11,7 @@ async function bootstrap() {
   });
   const logger = new Logger('App')
   logger.log(`starting bis on port ${process.env.PORT}`)
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT);
 
   if (module.hot) {

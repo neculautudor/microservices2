@@ -1,18 +1,24 @@
 {
   "dependencies": {
     "@nestjs/core": "^10.3.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.3.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "concurrency": "^0.1.4",
     "nodemon": "^3.0.2"
   },
   "devDependencies": {
     "@nestjs/testing": "^10.3.0",
+    "@nestjs/typeorm": "^10.0.1",
     "@types/node": "^20.10.6",
     "concurrently": "^8.2.2",
     "dotenv": "^16.3.1",
+    "pg": "^8.11.3",
     "run-script-webpack-plugin": "^0.2.0",
     "supertest": "^6.3.3",
     "ts-loader": "^9.5.1",
+    "typeorm": "^0.3.19",
     "webpack": "^5.89.0",
     "webpack-node-externals": "^3.0.0"
   },
