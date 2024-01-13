@@ -20,5 +20,7 @@ export class Order {
     @Column({type: 'timestamptz', default: () => "CURRENT_TIMESTAMP"})
     time: Date
 
+    @Column({default: "America Maryland Oceancity 4532"})
+    deliveryLocation: String
     
 }

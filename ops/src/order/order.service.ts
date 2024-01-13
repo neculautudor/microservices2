@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from './entities/order.entity';
 import { DataSource, Repository } from 'typeorm';
 import { BISService } from './order.bisservice';
-import flatted from 'flatted'
 @Injectable()
 export class OrderService{
   constructor(
@@ -17,7 +16,6 @@ export class OrderService{
   async create(createOrderDto: CreateOrderDto, req) {
     const userId = req?.user?.name
     const queryRunner = await this.dataSource.createQueryRunner()
-    const logger = new Logger()
     try{
       await queryRunner.connect()
       await queryRunner.startTransaction()
@@ -51,19 +49,49 @@ export class OrderService{
 
   }
 
-  findAll() {
-    return `This action returns all order`;
+  async findAll() {
+    try{
+      const allOrders = await this.orderRepository.find()
+      return {orders: allOrders}
+    }catch(error){
+      return {
+        message: "Error getting the orders",
+        erorr: error.message
+      }
+    }
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} order`;
+    try{
+      const order = this.orderRepository.findOne({where: {id: id}})
+      return {order: order}
+    }catch(error){
+      return {
+        message: "Error getting the order",
+        error: error.message
+      }
+    }
   }
 
-  update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
-  }
+  async update(id: number, updateOrderDto: UpdateOrderDto) {
+    //only deliveryLocation update is available, because updating books as well would be too hard to maintain, and not realistically worth it
+    try{
+      await this.orderRepository.update(id, updateOrderDto)
+    }catch(error){
+      return {
+        message: "Error updating the order",
+        error: error.message
+      }
+}}
 
-  remove(id: number) {
-    return `This action removes a #${id} order`;
+  async remove(id: number) {
+    try{
+      await this.orderRepository.delete(id)
+    }catch(error){
+      return {
+        message: "Error deleting the order",
+        error: error.message
+      }
+  }
   }
 }
