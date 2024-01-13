@@ -20,4 +20,8 @@ export class CreateBookDto {
     @IsNotEmpty()
     @IsString()
     readonly author_last_name: string;
+
+    @IsNotEmpty()
+    @IsNumber()
+    readonly available: number;
 }

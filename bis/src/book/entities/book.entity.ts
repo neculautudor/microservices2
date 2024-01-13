@@ -23,6 +23,9 @@ export class Book {
   @Column()
   author_last_name: string;
 
+  @Column({default: 1})
+  available: number;
+
   constructor(
     description: string,
     title: string,

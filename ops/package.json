@@ -4,13 +4,16 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.3.0",
     "concurrency": "^0.1.4",
+    "flatted": "^3.2.9",
     "nodemon": "^3.0.2"
   },
   "devDependencies": {
+    "@nestjs/axios": "^3.0.1",
     "@nestjs/testing": "^10.3.0",
     "@nestjs/typeorm": "^10.0.1",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.10.6",
+    "axios": "^1.6.5",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
