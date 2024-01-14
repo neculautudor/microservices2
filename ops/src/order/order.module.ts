@@ -9,5 +9,6 @@ import { BISService } from './order.bisservice';
   imports: [TypeOrmModule.forFeature([Order]), HttpModule],
   controllers: [OrderController],
   providers: [OrderService, BISService],
+  exports: [OrderService]
 })
 export class OrderModule {}

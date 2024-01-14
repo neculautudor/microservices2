@@ -12,10 +12,8 @@ export class BookController {
   create(@Body() createBookDto: CreateBookDto) {
     return this.bookService.create(createBookDto);
   }
-  @Patch('/order')
+  @Post('/order')
   updateFromOrder(@Body() orderDto: OrderDto){
-    const logger = new Logger("app")
-    logger.log('reveiced request')
     return this.bookService.updateFromOrder(orderDto)
   }
 

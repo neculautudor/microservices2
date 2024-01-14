@@ -24,8 +24,9 @@ export class OrderService{
         userId: userId
       })
       const result = await queryRunner.manager.save(Order, newOrder)
-      const bisUpdateResult = await this.bisService.postOrder(createOrderDto)
+      const bisUpdateResult = await this.bisService.postOrder({books: createOrderDto.books})
       if(bisUpdateResult?.data?.error){
+        await queryRunner.rollbackTransaction()
         return {
           message: "Error adding order",
           bookServiceErrorMessage: bisUpdateResult?.data?.message,

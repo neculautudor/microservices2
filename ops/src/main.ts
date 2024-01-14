@@ -9,8 +9,6 @@ async function bootstrap() {
     cors: true,
     logger: ['error', 'warn', 'log']
   });
-  const logger = new Logger('App')
-  logger.log(`starting ops on port ${process.env.PORT}`)
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT);
 

@@ -80,8 +80,6 @@ export class BookService {
 }
 
 async updateFromOrder(booksData: OrderDto){
-  const logger = new Logger('App')
-  logger.log("Reveived request")
   const booksMap = booksData.books.reduce((map, book) => {
     map[book.bookId] = book.amount
     return map
@@ -123,6 +121,8 @@ async updateFromOrder(booksData: OrderDto){
       message: "Successfully ordered all books!"
     }
   }catch(error){
+    const logger = new Logger('books')
+    logger.log(error)
     await queryRunner.rollbackTransaction()
     return {
       message: "Error updating the books",
