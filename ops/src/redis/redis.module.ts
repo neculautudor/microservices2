@@ -6,8 +6,8 @@ import { Item } from './entities/item.entity';
 import { OrderModule } from 'src/order/order.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Item]), OrderModule],
-  controllers: [RedisController],
-  providers: [RedisService],
+	imports: [TypeOrmModule.forFeature([Item]), OrderModule],
+	controllers: [RedisController],
+	providers: [RedisService],
 })
-export class RedisModule {}
+export class RedisModule { }

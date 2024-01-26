@@ -6,8 +6,8 @@ import { User } from './entities/user.entity';
 import { JwtAuthGuard } from '../../utils/auth.guard';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
-  controllers: [UserController],
-  providers: [UserService, JwtAuthGuard],
+	imports: [TypeOrmModule.forFeature([User])],
+	controllers: [UserController],
+	providers: [UserService, JwtAuthGuard],
 })
-export class UserModule {}
+export class UserModule { }

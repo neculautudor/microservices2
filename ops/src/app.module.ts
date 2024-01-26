@@ -22,10 +22,8 @@ dotenv.config()
     synchronize: true,
     logging: true,
   }),
-  OrderModule,
-  UserModule,
-  RedisModule,],
-  controllers: [AppController],
-  providers: [AppService],
+    OrderModule,
+    UserModule,
+    RedisModule,]
 })
-export class AppModule {}
+export class AppModule { }

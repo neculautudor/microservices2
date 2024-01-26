@@ -7,35 +7,35 @@ import { JwtAuthGuard } from '../../utils/auth.guard';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+	constructor(private readonly userService: UserService) { }
 
-  @Post('signup')
-  create(@Body() createUserDto: CreateUserDto, ) {
-    return this.userService.create(createUserDto);
-  }
-  @Post('login')
-  login(@Body() loginUserDto: LoginUserDto) {
-    return this.userService.login(loginUserDto);
-  }
+	@Post('signup')
+	create(@Body() createUserDto: CreateUserDto,) {
+		return this.userService.create(createUserDto);
+	}
+	@Post('login')
+	login(@Body() loginUserDto: LoginUserDto) {
+		return this.userService.login(loginUserDto);
+	}
 
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  findAll(@Req() request) {
-    return this.userService.findAll(request);
-  }
+	@UseGuards(JwtAuthGuard)
+	@Get()
+	findAll(@Req() request) {
+		return this.userService.findAll(request);
+	}
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
-  }
+	@Get(':id')
+	findOne(@Param('id') id: string) {
+		return this.userService.findOne(+id);
+	}
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
-  }
+	@Patch(':id')
+	update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+		return this.userService.update(+id, updateUserDto);
+	}
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
-  }
+	@Delete(':id')
+	remove(@Param('id') id: string) {
+		return this.userService.remove(+id);
+	}
 }
