@@ -18,12 +18,6 @@ export class UserController {
 		return this.userService.login(loginUserDto);
 	}
 
-	@UseGuards(JwtAuthGuard)
-	@Get()
-	findAll(@Req() request) {
-		return this.userService.findAll(request);
-	}
-
 	@Get(':id')
 	findOne(@Param('id') id: string) {
 		return this.userService.findOne(+id);

@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { CreateRediDto } from './dto/create-redi.dto';
-import { UpdateRediDto } from './dto/update-redi.dto';
+import { CreateItemDto } from './dto/create-item.dto';
+import { UpdateItemDto } from './dto/update-item.dto';
 import { Item } from './entities/item.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -68,7 +68,7 @@ export class RedisService {
 		}
 	}
 
-	async addItem(item: CreateRediDto, bookId, req) {
+	async addItem(item: CreateItemDto, bookId, req) {
 		const userId = req.user?.name
 		if (isNaN(Number(bookId))) {
 			return {
@@ -123,7 +123,7 @@ export class RedisService {
 		}
 	}
 
-	async update(id: number, updateRediDto: UpdateRediDto, userId: number) {
+	async update(id: number, UpdateItemDto: UpdateItemDto, userId: number) {
 		const item = await this.findOne(id)
 		if (userId !== item.item.userId) {
 			return {
@@ -132,7 +132,7 @@ export class RedisService {
 			}
 		}
 		try {
-			await this.itemRepository.update(id, updateRediDto)
+			await this.itemRepository.update(id, UpdateItemDto)
 			return {
 				message: "Successfully updated item"
 			}

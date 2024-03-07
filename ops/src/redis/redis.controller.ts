@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
 import { RedisService } from './redis.service';
-import { CreateRediDto } from './dto/create-redi.dto';
-import { UpdateRediDto } from './dto/update-redi.dto';
+import { CreateItemDto } from './dto/create-item.dto';
+import { UpdateItemDto } from './dto/update-item.dto';
 import { JwtAuthGuard } from 'utils/auth.guard';
 import { CreateOrderDto } from 'src/order/dto/create-order.dto';
 
@@ -11,8 +11,8 @@ export class RedisController {
 	constructor(private readonly redisService: RedisService) { }
 
 	@Post('/item/:bookId')
-	addItem(@Body() createRediDto: CreateRediDto, @Param() param, @Req() req) {
-		return this.redisService.addItem(createRediDto, param?.bookId, req);
+	addItem(@Body() CreateItemDto: CreateItemDto, @Param() param, @Req() req) {
+		return this.redisService.addItem(CreateItemDto, param?.bookId, req);
 	}
 	@Post('/create-order')
 	checkout(@Req() req, @Body() body: Pick<CreateOrderDto, 'deliveryLocation'>) {
@@ -34,8 +34,8 @@ export class RedisController {
 	}
 
 	@Patch(':id')
-	update(@Param('id') id: string, @Body() updateRediDto: UpdateRediDto, @Req() req) {
-		return this.redisService.update(+id, updateRediDto, req.user?.name);
+	update(@Param('id') id: string, @Body() UpdateItemDto: UpdateItemDto, @Req() req) {
+		return this.redisService.update(+id, UpdateItemDto, req.user?.name);
 	}
 
 	@Delete(':id')

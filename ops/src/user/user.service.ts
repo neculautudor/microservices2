@@ -47,18 +47,6 @@ export class UserService {
 			error: "Username or password incorrect"
 		}
 	}
-	async findAll(request) {
-		const userId = request?.user?.name
-		try {
-			const allBooks = await this.userRepository.find()
-			return { user: userId }
-		} catch (error) {
-			return {
-				message: "Error creating a book",
-				error: error.message
-			}
-		}
-	}
 
 	findOne(id: number) {
 		return `This action returns a #${id} user`;
